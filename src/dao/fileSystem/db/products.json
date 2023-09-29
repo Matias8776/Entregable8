@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "title": "producto prueba",
+        "description": "Este es un producto prueba",
+        "price": 200,
+        "thumbnails": "Sin imágenes",
+        "code": "abc123",
+        "stock": 25,
+        "status": true,
+        "category": "otros"
+    },
+    {
+        "id": 2,
+        "title": "producto prueba2",
+        "description": "Este es un producto prueba2",
+        "price": 100,
+        "thumbnails": "Sin imágenes",
+        "code": "abc124",
+        "stock": 12,
+        "status": true,
+        "category": "otros"
+    },
+    {
+        "id": 3,
+        "title": "producto prueba3",
+        "description": "Este es un producto prueba3",
+        "price": 120,
+        "thumbnails": "Sin imágenes",
+        "code": "abc125",
+        "stock": 15,
+        "status": true,
+        "category": "otros"
+    },
+    {
+        "id": 4,
+        "title": "producto prueba4",
+        "description": "Este es un producto prueba4",
+        "price": 400,
+        "thumbnails": "Sin imágenes",
+        "code": "abc126",
+        "stock": 32,
+        "status": true,
+        "category": "otros"
+    },
+    {
+        "id": 5,
+        "title": "producto prueba5",
+        "description": "Este es un producto prueba5",
+        "price": 120,
+        "thumbnails": "Sin imágenes",
+        "code": "abc127",
+        "stock": 7,
+        "status": true,
+        "category": "otros"
+    },
+    {
+        "id": 6,
+        "title": "producto prueba6",
+        "description": "Este es un producto prueba6",
+        "price": 240,
+        "thumbnails": "Sin imágenes",
+        "code": "abc128",
+        "stock": 16,
+        "status": true,
+        "category": "otros"
+    },
+    {
+        "id": 7,
+        "title": "producto prueba7",
+        "description": "Este es un producto prueba7",
+        "price": 80,
+        "thumbnails": "Sin imágenes",
+        "code": "abc129",
+        "stock": 42,
+        "status": true,
+        "category": "otros"
+    },
+    {
+        "id": 8,
+        "title": "producto prueba8",
+        "description": "Este es un producto prueba8",
+        "price": 50,
+        "thumbnails": "Sin imágenes",
+        "code": "abc130",
+        "stock": 5,
+        "status": true,
+        "category": "otros"
+    },
+    {
+        "id": 9,
+        "title": "producto prueba9",
+        "description": "Este es un producto prueba9",
+        "price": 180,
+        "thumbnails": "Sin imágenes",
+        "code": "abc131",
+        "stock": 25,
+        "status": true,
+        "category": "otros"
+    },
+    {
+        "id": 10,
+        "title": "producto prueba10",
+        "description": "Este es un producto prueba10",
+        "price": 300,
+        "thumbnails": "Sin imágenes",
+        "code": "abc132",
+        "stock": 10,
+        "status": true,
+        "category": "otros"
+    }
+]

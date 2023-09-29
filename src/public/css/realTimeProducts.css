@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    height: 100%;
+}
+
+h1 {
+    color: #999999;
+    text-align: center;
+    margin: 20px;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: #999999;
+}
+
+li {
+    max-width: 250px;
+    margin: 35px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+section {
+    display: flex;
+}
+
+div {
+    width: 50%;
+}
+
+h2 {
+    color: #999999;
+    text-align: center;
+    margin: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    width: 50%;
+    color: #999999;
+}
+
+label {
+    text-align: center;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+#submitAdd {
+    width: 30%;
+    margin: 20px auto;
+}
+
+#submitDel {
+    width: 30%;
+    margin: 20px auto;
+}
+
+#thumbnails {
+    margin: 10px auto;
+}
+
+#id {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+}

@@ -1,0 +1,36 @@
+<h1>Carrito</h1>
+
+<section class="containerProducts">
+    {{#each plainProducts}}
+        <div class="product">
+            <div>
+                <strong>Id:</strong>
+                {{this._id._id}}
+            </div>
+            <div>
+                <strong>Título:</strong>
+                {{this._id.title}}
+            </div>
+            <div>
+                <strong>Precio:</strong>
+                {{this._id.price}}
+            </div>
+            <div>
+                <strong>Código:</strong>
+                {{this._id.code}}
+            </div>
+            <div>
+                <strong>Stock:</strong>
+                {{this._id.stock}}
+            </div>
+            <div>
+                <strong>Categoría:</strong>
+                {{this._id.category}}
+            </div>
+            <div>
+                <strong>Status:</strong>
+                {{this._id.status}}
+            </div>
+        </div>
+    {{/each}}
+</section>
