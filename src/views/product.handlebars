@@ -1,4 +1,22 @@
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+/>
+
 <h1>{{plainProduct.title}}</h1>
+
+<section class="usuario">
+    <div>
+        <p>Nombre: {{user.name}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Rol: {{user.role}}</p>
+    </div>
+    <div>
+        <a href="/carts/{{cart}}">Carrito</a>
+        <a href="/api/sessions/logout">Logout</a>
+    </div>
+</section>
 
 <section class="containerProducts">
     <div class="product">
@@ -34,6 +52,17 @@
             <strong>Status:</strong>
             {{plainProduct.status}}
         </div>
-        <a href="#" class="addButton"><button>Agregar al carrito</button></a>
+        <a
+            href=""
+            class="addButton"
+            data-cid="{{cart}}"
+            data-pid="{{plainProduct._id}}"
+        ><button>Agregar al carrito</button></a>
     </div>
 </section>
+
+<script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/toastify-js"
+></script>
+<script src="/static/js/product.js"></script>

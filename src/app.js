@@ -13,6 +13,7 @@ import MongoStore from "connect-mongo";
 import sessionsRouter from "./routes/sessions.js";
 import passport from "passport";
 import initializePassport from "./config/passport.js";
+import cookieParser from "cookie-parser";
 
 const messagesManager = new MessagesManager();
 
@@ -32,6 +33,7 @@ app.use("/static", express.static(path.join(__dirname, "/public")));
 app.engine("handlebars", handlebars.engine());
 app.set("views", path.join(__dirname + "/views"));
 app.set("view engine", "handlebars");
+app.use(cookieParser( "CoderSecret" ));
 app.use(
     session({
         store: MongoStore.create({

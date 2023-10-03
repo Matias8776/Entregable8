@@ -26,7 +26,6 @@ h1 {
 .product {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     max-width: 300px;
     margin: 35px;
@@ -35,7 +34,6 @@ h1 {
     text-overflow: ellipsis;
     border: 1px solid #999999;
     padding: 25px;
-    text-align: center;
     text-decoration: none;
     color: #999999;
     gap: 10px;
@@ -44,4 +42,21 @@ h1 {
 .addButton {
     margin-top: 50px;
     text-decoration: none;
+    text-align: center;
+}
+
+p {
+    color: #999999;
+}
+
+a {
+    color: #999999;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.usuario {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
 }

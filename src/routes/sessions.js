@@ -21,7 +21,8 @@ router.post(
                 name: "Administrador",
                 email: req.user.email,
                 age: 35,
-                role: "Admin",
+                role: "admin",
+                cart: "64fda47eecb725fd4fc1639a"
             };
             return res.send({ status: "success", payload: req.session.user });
         } else {
@@ -29,9 +30,10 @@ router.post(
                 name: `${req.user.first_name} ${req.user.last_name}`,
                 email: req.user.email,
                 age: req.user.age,
-                role: "Usuario",
+                role: req.user.role,
+                cart: req.user.cart,
             };
-            res.send({ status: "success", payload: req.session.user });
+            res.cookie("cart", req.user.cart).send({ status: "success", payload: req.session.user });
         }
     }
 );
@@ -91,7 +93,8 @@ router.get(
             name: `${req.user.first_name} ${req.user.last_name}`,
             email: req.user.email || "Sin email",
             age: req.user.age,
-            role: "Usuario",
+            role: req.user.role,
+            cart: req.user.cart
         };
         res.redirect("/products");
     }
@@ -117,5 +120,12 @@ router.post("/resetPassword", async (req, res) => {
         message: "Contraseña actualizada correctamente",
     });
 });
+
+router.get('/current', (req, res) => {
+    if (!req.session.user) {
+        return res.send({ status: 'error', message: 'No hay usuario logueado' })
+    }
+    res.send(req.session.user)
+})
 
 export default router;

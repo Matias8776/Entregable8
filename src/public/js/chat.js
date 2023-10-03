@@ -54,9 +54,10 @@ socket.on("broadcast", (usuario) => {
     Toastify({
         text: `${usuario} ingreso al chat`,
         duration: 3000,
-        position: "top-center",
+        gravity: "bottom",
+        position: "center",
         style: {
-            background: "linear-gradient(to right, #808080, #000000)",
+            background: "#808080",
         },
     }).showToast();
 });

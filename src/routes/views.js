@@ -84,6 +84,7 @@ router.get("/products", privateAccess, async (req, res) => {
 
     const plainProducts = products.docs.map((doc) => doc.toObject());
     res.render("products", {
+        cart: req.session.user.cart,
         products,
         plainProducts,
         user: req.session.user,
@@ -97,6 +98,8 @@ router.get("/products/:pid", privateAccess, async (req, res) => {
     const plainProduct = await productManager.getProductById(pid);
 
     res.render("product", {
+        cart: req.session.user.cart,
+        user: req.session.user,
         plainProduct,
         style: "product.css",
         title: `Ecommerce - ${plainProduct.title}`,
@@ -107,7 +110,9 @@ router.get("/carts/:cid", privateAccess, async (req, res) => {
     const cid = req.params.cid;
     const cart = await cartManager.getCartById(cid);
     const plainProducts = cart.products;
+    const quantity = cart.quantity;
     res.render("carts", {
+        quantity: quantity,
         plainProducts,
         style: "carts.css",
         title: "Ecommerce - Carrito",

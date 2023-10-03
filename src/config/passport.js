@@ -3,7 +3,9 @@ import local from "passport-local";
 import usersModel from "../dao/models/users.js";
 import { createHash, isValidPassword } from "../utils.js";
 import GitHubStrategy from "passport-github2";
+import CartManager from "../dao/mongoDb/CartManager.js";
 
+const cartManager = new CartManager();
 const localStrategy = local.Strategy;
 const initializePassport = () => {
     passport.use(
@@ -19,12 +21,14 @@ const initializePassport = () => {
                             message: "El usuario ya existe",
                         });
                     }
+                    const cart = await cartManager.addCart();
                     const newUser = {
                         first_name,
                         last_name,
                         email,
                         age,
                         password: createHash(password),
+                        cart: cart._id,
                     };
                     let result = await usersModel.create(newUser);
                     return done(null, result);
@@ -94,12 +98,14 @@ const initializePassport = () => {
                         email: profile._json.email,
                     });
                     if (!user) {
+                        const cart = await cartManager.addCart();
                         const newUser = {
                             first_name: profile._json.name,
                             last_name: "",
                             age: 18,
                             email: profile._json.email,
                             password: "",
+                            cart: cart._id,
                         };
                         let result = await usersModel.create(newUser);
                         return done(null, result);
