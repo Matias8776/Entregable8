@@ -1,7 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import usersModel from "../dao/models/users.js";
-import { createHash } from "../utils.js";
+import { createHash, generateToken, passportCall } from "../utils.js";
 
 const router = Router();
 
@@ -22,9 +22,12 @@ router.post(
                 email: req.user.email,
                 age: 35,
                 role: "admin",
-                cart: "64fda47eecb725fd4fc1639a"
+                cart: "64fda47eecb725fd4fc1639a",
             };
-            return res.send({ status: "success", payload: req.session.user });
+            const token = generateToken(req.session.user);
+            res.cookie("coderCookie", token, {
+                httpOnly: true,
+            }).send({ status: "success", payload: req.session.user });
         } else {
             req.session.user = {
                 name: `${req.user.first_name} ${req.user.last_name}`,
@@ -33,7 +36,10 @@ router.post(
                 role: req.user.role,
                 cart: req.user.cart,
             };
-            res.cookie("cart", req.user.cart).send({ status: "success", payload: req.session.user });
+            const token = generateToken(req.session.user);
+            res.cookie("coderCookie", token, {
+                httpOnly: true,
+            }).send({ status: "success", payload: req.session.user });
         }
     }
 );
@@ -42,7 +48,7 @@ router.get("/faillogin", (req, res) => {
     const message = req.session.messages;
     res.status(400).send({
         status: "error",
-        message: message[message.length -1],
+        message: message[message.length - 1],
     });
 });
 
@@ -56,6 +62,7 @@ router.post(
         res.send({
             status: "success",
             message: "Usuario registrado correctamente",
+            payload: req.user._id,
         });
     }
 );
@@ -64,7 +71,7 @@ router.get("/failregister", (req, res) => {
     const message = req.session.messages;
     res.status(400).send({
         status: "error",
-        message: message[message.length -1],
+        message: message[message.length - 1],
     });
 });
 
@@ -73,6 +80,8 @@ router.get("/logout", (req, res) => {
         if (err) {
             console.error("Error al destruir la sesión:", err);
         }
+        res.clearCookie("coderCookie");
+        res.clearCookie("connect.sid");
         res.redirect("/");
     });
 });
@@ -94,9 +103,12 @@ router.get(
             email: req.user.email || "Sin email",
             age: req.user.age,
             role: req.user.role,
-            cart: req.user.cart
+            cart: req.user.cart,
         };
-        res.redirect("/products");
+        const token = generateToken(req.session.user);
+        res.cookie("coderCookie", token, {
+            httpOnly: true,
+        }).redirect("/products");
     }
 );
 
@@ -121,11 +133,8 @@ router.post("/resetPassword", async (req, res) => {
     });
 });
 
-router.get('/current', (req, res) => {
-    if (!req.session.user) {
-        return res.send({ status: 'error', message: 'No hay usuario logueado' })
-    }
-    res.send(req.session.user)
-})
+router.get("/current", passportCall("current"), (req, res) => {
+    res.send(req.user);
+});
 
 export default router;

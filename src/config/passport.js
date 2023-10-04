@@ -4,17 +4,31 @@ import usersModel from "../dao/models/users.js";
 import { createHash, isValidPassword } from "../utils.js";
 import GitHubStrategy from "passport-github2";
 import CartManager from "../dao/mongoDb/CartManager.js";
+import jwt from "passport-jwt";
 
 const cartManager = new CartManager();
 const localStrategy = local.Strategy;
+const JWTStrategy = jwt.Strategy;
+const ExtractJWT = jwt.ExtractJwt;
 const initializePassport = () => {
     passport.use(
         "register",
         new localStrategy(
-            { passReqToCallback: true, usernameField: "email" },
+            { passReqToCallback: true, usernameField: "email", session: false },
             async (req, username, password, done) => {
-                const { first_name, last_name, email, age } = req.body;
                 try {
+                    const { first_name, last_name, email, age } = req.body;
+                    if (
+                        !first_name ||
+                        !last_name ||
+                        !email ||
+                        !age ||
+                        !password
+                    ) {
+                        return done(null, false, {
+                            message: "Faltan datos",
+                        });
+                    }
                     let user = await usersModel.findOne({ email: username });
                     if (user) {
                         return done(null, false, {
@@ -42,8 +56,8 @@ const initializePassport = () => {
     passport.use(
         "login",
         new localStrategy(
-            { passReqToCallback: true, usernameField: "email" },
-            async (req, username, password, done) => {
+            { usernameField: "email", session: false },
+            async (username, password, done) => {
                 try {
                     if (
                         username === "adminCoder@coder.com" &&
@@ -117,6 +131,22 @@ const initializePassport = () => {
             }
         )
     );
+    passport.use(
+        "current",
+        new JWTStrategy(
+            {
+                jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+                secretOrKey: "coderSecret",
+            },
+            async (jwt_payload, done) => {
+                try {
+                    return done(null, jwt_payload);
+                } catch (error) {
+                    return done(error);
+                }
+            }
+        )
+    );
 };
 
 passport.serializeUser((user, done) => {
@@ -142,5 +172,11 @@ passport.deserializeUser(async (id, done) => {
         }
     }
 });
+
+const cookieExtractor = (req, res) => {
+    let token = null;
+    if (req && req.cookies) token = req.cookies["coderCookie"];
+    return token;
+};
 
 export default initializePassport;
