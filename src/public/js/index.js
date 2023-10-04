@@ -24,7 +24,7 @@ socket.on("server:updatedProducts", async () => {
             <strong>Precio:</strong> ${a.price}<br>
             <strong>Código:</strong> ${a.code}<br>
             <strong>Stock:</strong> ${a.stock}<br>
-            <strong>Categoria:</strong> ${a.category}<br>
+            <strong>Categoría:</strong> ${a.category}<br>
             <strong>Status:</strong> ${a.status}<br>
             `;
                 productsContainer.appendChild(newLiProduct);

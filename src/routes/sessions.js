@@ -48,7 +48,7 @@ router.get("/faillogin", (req, res) => {
     const message = req.session.messages;
     res.status(400).send({
         status: "error",
-        message: message[message.length - 1],
+        message: message,
     });
 });
 
@@ -71,7 +71,7 @@ router.get("/failregister", (req, res) => {
     const message = req.session.messages;
     res.status(400).send({
         status: "error",
-        message: message[message.length - 1],
+        message: message,
     });
 });
 

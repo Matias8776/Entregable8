@@ -18,7 +18,7 @@
 
 -   http://localhost:8080/products
 
--   Parametros(opcionales):
+-   Parámetros(opcionales):
     ?limit=5,
     ?page=2,
     ?category=electronica,

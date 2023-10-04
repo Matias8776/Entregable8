@@ -41,7 +41,7 @@ export default class ProductManager {
             return result;
         }
         if (this.products.some((product) => product.code === code)) {
-            result.message = "El codigo ya está en uso";
+            result.message = "El código ya está en uso";
             return result;
         }
         if (thumbnails.length === 0) {

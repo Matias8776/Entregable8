@@ -30,7 +30,7 @@ const initializePassport = () => {
                         });
                     }
                     let user = await usersModel.findOne({ email: username });
-                    if (user) {
+                    if (user || email === "adminCoder@coder.com") {
                         return done(null, false, {
                             message: "El usuario ya existe",
                         });
