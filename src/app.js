@@ -48,10 +48,10 @@ app.use(
 initializePassport();
 app.use(passport.initialize());
 
-app.use("/", viewsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/sessions", sessionsRouter);
+app.use("/", viewsRouter);
 
 db.on("error", (error) => {
     console.error("Error de conexión a MongoDB:", error);

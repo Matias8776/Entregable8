@@ -96,7 +96,6 @@ router.get("/products", privateAccess, async (req, res) => {
 router.get("/products/:pid", privateAccess, async (req, res) => {
     const pid = req.params.pid;
     const plainProduct = await productManager.getProductById(pid);
-
     res.render("product", {
         cart: req.session.user.cart,
         user: req.session.user,
@@ -124,6 +123,10 @@ router.get("/resetPassword", publicAccess, (req, res) => {
         style: "resetPassword.css",
         title: "Ecommerce - Restaurar contraseña",
     });
+});
+
+router.use((req, res) => {
+    res.render("404", { style: "404.css", title: "Ecommerce - 404" });
 });
 
 export default router;
